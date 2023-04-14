@@ -1,0 +1,121 @@
+.gitconfig
+var/log/error_log
+var/log/ssl_request_log
+.project
+.sublimelinterrc
+.externalToolBuilders
+.gnupg
+.lesshst
+.settings
+.includepath
+.DS_Store
+.profile
+.vstags
+.vscode
+.vim*
+
+# files that might be generated during development
+build.log
+otobo.iml
+*.out
+git-*.txt
+
+# Editor swap files
+*.swn
+*.swp
+*.swo
+*~
+
+# OTOBO
+.procmailrc
+/ARCHIVE
+doc/manual/en
+Kernel/Config/Backups/
+Kernel/Config/Files/ZZZ*.pm
+Kernel/Config/Files/User/*
+Kernel/Config/GenericAgent.pm
+Kernel/Config.pm
+Kernel/Language/*.old
+bin/cgi-bin/.htaccess
+var/virtualfs
+var/run
+var/log/*.log
+var/log/Daemon/*.log
+var/OPM
+var/Stats
+var/tmp/*
+var/httpd/htdocs/SeleniumScreenshots/
+var/httpd/htdocs/js/thirdparty/jslint
+var/httpd/htdocs/js/js-cache
+var/httpd/htdocs/skins/*/*/css-cache
+var/sessions/Data*
+var/sessions/State*
+var/article/*
+var/cron/*
+!var/cron/*.dist
+
+# locally installed Perl module
+local
+
+# Fred
+Fred.sopm
+CHANGES-Fred
+doc/en/Fred.xml
+doc/en/Fred.pdf
+Kernel/Output/HTML/FilterContent/Fred.pm
+Kernel/Output/HTML/Fred/*
+Kernel/Output/HTML/Templates/Standard/DevelFred*
+Kernel/Config/Files/AAAFred.pm
+Kernel/Config/Files/Fred.xml
+Kernel/Config/Files/XML/Fred.xml
+Kernel/Modules/DevelFred.pm
+Kernel/System/Fred
+var/fred
+var/httpd/htdocs/js/*Fred*js
+var/httpd/htdocs/skins/Agent/default/css/*Fred*css
+var/httpd/htdocs/skins/Customer/default/css/*Fred*css
+
+# CodePolicy
+.tidyall.d
+perltidy.LOG.old
+bin/otobo.CodePolicy.pl
+Kernel/cpan-lib/Perl/Tidy*
+TidyAll
+Kernel/cpan-lib/Locale/PO.pm
+scripts/install-git-hooks.pl
+scripts/uninstall-git-hooks.pl
+CodePolicy*
+OTOBOCodePolicy*
+perltidy.LOG
+
+# ITSM
+var/stats/*.xml.installed
+bin/CodeInstall.pl
+bin/ModuleCode.pl
+bin/DatabaseInstall.pl
+
+# ContinuousIntegrationProvisioner (vagrant VMs)
+.cache
+.ssh
+.viminfo
+.bash*
+.mysql_history
+.passwd
+backup_es
+
+# Docker
+.env
+.env_*
+
+# Temporary files while running the unit tests
+bin/otobo.CheckDB.pl
+DeleteMePlease
+Test
+!/scripts/test
+
+# in case somebody generated keys or certificates
+*.cert
+*.crt
+*.csr
+*.key
+*.pem

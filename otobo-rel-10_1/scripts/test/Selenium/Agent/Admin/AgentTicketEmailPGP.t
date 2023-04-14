@@ -1,0 +1,420 @@
+# --
+# OTOBO is a web-based ticketing system for service organisations.
+# --
+# Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
+# Copyright (C) 2019-2023 Rother OSS GmbH, https://otobo.de/
+# --
+# This program is free software: you can redistribute it and/or modify it under
+# the terms of the GNU General Public License as published by the Free Software
+# Foundation, either version 3 of the License, or (at your option) any later version.
+# This program is distributed in the hope that it will be useful, but WITHOUT
+# ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+# FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <https://www.gnu.org/licenses/>.
+# --
+
+use v5.24;
+use strict;
+use warnings;
+use utf8;
+
+# core modules
+use File::Path qw(mkpath rmtree);
+
+# CPAN modules
+use Test2::V0;
+
+# OTOBO modules
+use Kernel::System::UnitTest::RegisterDriver;    # Set up $Kernel::OM and the test driver $Self
+use Kernel::System::UnitTest::Selenium;
+use Kernel::Config;
+
+# the question whether there is a S3 backend must the resolved early
+{
+
+    my $ClearConfigObject = Kernel::Config->new( Level => 'Clear' );
+    my $S3Active          = $ClearConfigObject->Get('Storage::S3::Active');
+
+    skip_all('Key management not implemented for the S3 case. See https://github.com/RotherOSS/otobo/issues/1799') if $S3Active;
+}
+
+our $Self;
+
+my $Selenium = Kernel::System::UnitTest::Selenium->new( LogExecuteCommandActive => 1 );
+
+$Selenium->RunTest(
+    sub {
+
+        my $Helper       = $Kernel::OM->Get('Kernel::System::UnitTest::Helper');
+        my $ConfigObject = $Kernel::OM->Get('Kernel::Config');
+
+        # Create test PGP path and set it in sysConfig.
+        my $RandomID = $Helper->GetRandomID();
+        my $PGPPath  = $ConfigObject->Get('Home') . "/var/tmp/pgp" . $RandomID;
+        mkpath( [$PGPPath], 0, 0770 );    ## no critic qw(ValuesAndExpressions::ProhibitLeadingZeros)
+
+        # Enable PGP in config.
+        $Helper->ConfigSettingChange(
+            Valid => 1,
+            Key   => 'PGP',
+            Value => 1,
+        );
+
+        # Set PGP path in config.
+        $Helper->ConfigSettingChange(
+            Valid => 1,
+            Key   => 'PGP::Options',
+            Value => "--homedir $PGPPath --batch --no-tty --yes",
+        );
+
+        # Create test user and login.
+        my ( $TestUserLogin, $TestUserID ) = $Helper->TestUserCreate(
+            Groups => [ 'admin', 'users' ],
+        );
+
+        $Selenium->Login(
+            Type     => 'Agent',
+            User     => $TestUserLogin,
+            Password => $TestUserLogin,
+        );
+
+        my $ScriptAlias = $ConfigObject->Get('ScriptAlias');
+
+        # Navigate to AdminPGP screen.
+        $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AdminPGP");
+
+        for my $Key ( 4, 5 ) {
+
+            # Add test PGP key.
+            $Selenium->find_element("//a[contains(\@href, \'Action=AdminPGP;Subaction=Add' )]")->VerifiedClick();
+            my $Location = $ConfigObject->Get('Home')
+                . "/scripts/test/sample/Crypt/PGPPrivateKey-$Key.asc";
+
+            $Selenium->find_element( "#FileUpload", 'css' )->send_keys($Location);
+            $Selenium->find_element("//button[\@type='submit']")->VerifiedClick();
+        }
+
+        my $SystemAddressObject = $Kernel::OM->Get('Kernel::System::SystemAddress');
+        my $QueueObject         = $Kernel::OM->Get('Kernel::System::Queue');
+
+        # Add system address.
+        my $SystemAddressEmail    = 'pgptest@example.com';
+        my $SystemAddressRealname = "$SystemAddressEmail, $RandomID";
+
+        my %List = $SystemAddressObject->SystemAddressList(
+            Valid => 0,
+        );
+        my $SystemAddressID;
+        my $SystemAddressAdded = 0;
+        if ( !grep { $_ =~ m/^$SystemAddressEmail$/ } values %List ) {
+
+            $SystemAddressID = $SystemAddressObject->SystemAddressAdd(
+                Name     => $SystemAddressEmail,
+                Realname => $SystemAddressRealname,
+                ValidID  => 1,
+                QueueID  => 1,
+                Comment  => 'Some Comment',
+                UserID   => 1,
+            );
+            $Self->True(
+                $SystemAddressID,
+                'SystemAddressAdd()',
+            ) || die;
+            $SystemAddressAdded = 1;
+        }
+        else {
+            %List            = reverse %List;
+            $SystemAddressID = $List{$SystemAddressEmail};
+        }
+
+        my $QueueName = 'TestQueue' . $RandomID;
+
+        # Add new queue.
+        my $QueueID = $QueueObject->QueueAdd(
+            Name                => $QueueName,
+            ValidID             => 1,
+            GroupID             => 1,
+            FirstResponseTime   => 0,
+            FirstResponseNotify => 0,
+            UpdateTime          => 0,
+            UpdateNotify        => 0,
+            SolutionTime        => 0,
+            SolutionNotify      => 0,
+            SystemAddressID     => $SystemAddressID,
+            SalutationID        => 1,
+            SignatureID         => 1,
+            Comment             => 'Some Comment',
+            UserID              => 1,
+        );
+
+        $Self->True(
+            $QueueID,
+            "QueueAdd() - $QueueName, $QueueID",
+        );
+
+        # Navigate to AgentTicketEmail screen.
+        $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentTicketEmail");
+
+        # Select test queue.
+        my $Option = $Selenium->execute_script(
+            "return \$('#Dest option').filter(function () { return \$(this).html() == '$QueueName'; }).val();"
+        );
+        $Selenium->InputFieldValueSet(
+            Element => '#Dest',
+            Value   => $Option,
+        );
+
+        $Selenium->WaitFor(
+            JavaScript =>
+                'return typeof($) === "function" && $("#EmailSecurityOptions").length && !$(".AJAXLoader:visible").length'
+        );
+
+        # Select
+        $Selenium->InputFieldValueSet(
+            Element => '#EmailSecurityOptions',
+            Value   => "PGP::Sign::-",
+        );
+
+        $Selenium->WaitFor(
+            JavaScript =>
+                'return typeof($) === "function" && $("#SignKeyID").length && !$(".AJAXLoader:visible").length'
+        );
+
+        $Selenium->WaitFor(
+            JavaScript =>
+                "return \$('#SignKeyID option:selected').text();"
+        );
+
+        $Option = $Selenium->execute_script(
+            "return \$('#SignKeyID option:selected').text();"
+        );
+
+        $Self->False(
+            index( $Option, 'WARNING: EXPIRED KEY' ) > -1,
+            "Selected signing key is not expired",
+        );
+
+        $Option = $Selenium->execute_script(
+            "return \$('#SignKeyID option:eq(2)').text();"
+        );
+
+        $Self->True(
+            index( $Option, 'WARNING: EXPIRED KEY' ) > -1,
+            "There is another signing, that is expired",
+        );
+
+        my $TicketObject  = $Kernel::OM->Get('Kernel::System::Ticket');
+        my $ArticleObject = $Kernel::OM->Get('Kernel::System::Ticket::Article');
+
+        # create ticket
+        my $TicketID = $TicketObject->TicketCreate(
+            Title        => 'Ticket One Title',
+            QueueID      => $QueueID,
+            Lock         => 'unlock',
+            Priority     => '3 normal',
+            State        => 'new',
+            CustomerID   => 'example.com',
+            CustomerUser => 'customerOne@example.com',
+            OwnerID      => $TestUserID,
+            UserID       => $TestUserID,
+        );
+
+        # sanity check
+        $Self->True(
+            $TicketID,
+            "TicketCreate() successful for Ticket ID $TicketID",
+        );
+
+        my $ArticleID = $Kernel::OM->Get('Kernel::System::Ticket::Article::Backend::Internal')->ArticleCreate(
+            TicketID             => $TicketID,
+            IsVisibleForCustomer => 1,
+            SenderType           => 'customer',
+            From                 => 'customerOne@example.com',
+            To                   => 'Some Agent A <agent-a@example.com>',
+            Subject              => 'some short description',
+            Body                 => 'the message text',
+            Charset              => 'utf8',
+            MimeType             => 'text/plain',
+            HistoryType          => 'OwnerUpdate',
+            HistoryComment       => 'Some free text!',
+            UserID               => $TestUserID,
+        );
+
+        # sanity check
+        $Self->True(
+            $ArticleID,
+            "ArticleCreate() successful for Article ID $ArticleID",
+        );
+
+        my $CheckEmailSecurityOptions = sub {
+            $Selenium->WaitFor(
+                JavaScript =>
+                    'return typeof($) === "function" && $("#EmailSecurityOptions").length && !$(".AJAXLoader:visible").length'
+            );
+
+            # Select EmailSecurityOptions
+            $Selenium->InputFieldValueSet(
+                Element => '#EmailSecurityOptions',
+                Value   => "PGP::Sign::-",
+            );
+
+            $Selenium->WaitFor(
+                JavaScript =>
+                    'return typeof($) === "function" && $("#SignKeyID").length && !$(".AJAXLoader:visible").length'
+            );
+
+            $Selenium->WaitFor(
+                JavaScript =>
+                    "return \$('#SignKeyID option:selected').text();"
+            );
+
+            $Option = $Selenium->execute_script(
+                "return \$('#SignKeyID option:selected').text();"
+            );
+
+            $Self->True(
+                index( $Option, $SystemAddressEmail ) > -1,
+                "Signing key is selected",
+            );
+
+            return;
+        };
+
+        # Check EmailSecurityOptions, see bug#14963 for more information.
+        # Navigate to AgentTicketForward screen.
+        $Selenium->VerifiedGet(
+            "${ScriptAlias}index.pl?Action=AgentTicketForward;TicketID=$TicketID;ArticleID=$ArticleID"
+        );
+        $CheckEmailSecurityOptions->();
+
+        # Navigate to AgentTicketEmailOutbound screen.
+        $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AgentTicketEmailOutbound;TicketID=$TicketID");
+        $CheckEmailSecurityOptions->();
+
+        # Navigate to AgentTicketCompose screen.
+        $Selenium->VerifiedGet(
+            "${ScriptAlias}index.pl?Action=AgentTicketCompose;TicketID=$TicketID;ArticleID=$ArticleID;ResponseID=1"
+        );
+        $CheckEmailSecurityOptions->();
+
+        # Select EmailSecurityOptions
+        $Selenium->InputFieldValueSet(
+            Element => '#EmailSecurityOptions',
+            Value   => "PGP::Sign::-",
+        );
+
+        $Selenium->WaitFor(
+            JavaScript =>
+                'return typeof($) === "function" && $("#SignKeyID").length && !$(".AJAXLoader:visible").length'
+        );
+
+        $Selenium->WaitFor(
+            JavaScript =>
+                "return \$('#SignKeyID option:selected').text();"
+        );
+
+        $Option = $Selenium->execute_script(
+            "return \$('#SignKeyID option:selected').text();"
+        );
+
+        $Self->True(
+            index( $Option, $SystemAddressEmail ) > -1,
+            "Signing key is selected",
+        );
+
+        # Navigate to AdminPGP screen.
+        $Selenium->VerifiedGet("${ScriptAlias}index.pl?Action=AdminPGP");
+
+        # Delete test PGP keys.
+        for my $Count ( 1 .. 2 ) {
+            my @Keys = $Kernel::OM->Get('Kernel::System::Crypt::PGP')->KeySearch(
+                Search => $SystemAddressEmail,
+            );
+
+            for my $Key (@Keys) {
+
+                # Secure key should be deleted first.
+                if ( $Key->{Type} eq 'sec' ) {
+
+                    # Click on delete secure key and public key.
+                    for my $Type (qw( sec pub )) {
+
+                        $Selenium->find_element(
+                            "//a[contains(\@href, \'Subaction=Delete;Type=$Type;Key=$Key->{FingerprintShort}' )]"
+                        )->click();
+
+                        $Selenium->WaitFor( AlertPresent => 1 );
+                        $Selenium->accept_alert();
+
+                        $Selenium->WaitFor(
+                            JavaScript =>
+                                "return typeof(\$) === 'function' && \$('a[href*=\"Delete;Type=$Type;Key=$Key->{FingerprintShort}\"]').length == 0;"
+                        );
+                        $Selenium->VerifiedRefresh();
+
+                        # Check if PGP key is deleted.
+                        $Self->False(
+                            $Selenium->execute_script(
+                                "return \$('a[href*=\"Delete;Type=$Type;Key=$Key->{FingerprintShort}\"]').length;"
+                            ),
+                            "PGPKey $Type - $Key->{Identifier} deleted",
+                        );
+
+                    }
+                }
+            }
+        }
+
+        # Remove test PGP path.
+        my $Success = rmtree( [$PGPPath] );
+        $Self->True(
+            $Success,
+            "Directory deleted - '$PGPPath'",
+        );
+
+        # Clean up test data from the DB.
+        $Success = $TicketObject->TicketDelete(
+            TicketID => $TicketID,
+            UserID   => 1,
+        );
+
+        # Ticket deletion could fail if apache still writes to ticket history. Try again in this case.
+        if ( !$Success ) {
+            sleep 3;
+            $Success = $TicketObject->TicketDelete(
+                TicketID => $TicketID,
+                UserID   => 1,
+            );
+        }
+        $Self->True(
+            $Success,
+            "Ticket is deleted - ID $TicketID"
+        );
+
+        my $DBObject = $Kernel::OM->Get('Kernel::System::DB');
+        $Success = $DBObject->Do(
+            SQL  => "DELETE FROM queue WHERE id = ?",
+            Bind => [ \$QueueID ],
+        );
+        $Self->True(
+            $Success,
+            "QueueID $QueueID is deleted",
+        );
+
+        if ($SystemAddressAdded) {
+            $Success = $DBObject->Do(
+                SQL => "DELETE FROM system_address WHERE id= $SystemAddressID",
+            );
+            $Self->True(
+                $Success,
+                "Deleted SystemAddress - $SystemAddressID",
+            );
+        }
+
+        # Make sure the cache is correct.
+        $Kernel::OM->Get('Kernel::System::Cache')->CleanUp();
+    }
+);
+
+done_testing();

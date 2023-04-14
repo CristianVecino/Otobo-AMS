@@ -1,0 +1,212 @@
+/* OTOBO is a web-based ticketing system for service organisations.
+
+Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
+Copyright (C) 2019-2023 Rother OSS GmbH, https://otobo.de/
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+/**
+ * @package     Skin "Default"
+ * @section     Dialogs
+ */
+
+@media screen,projection,tv,handheld {
+
+/**
+ * @subsection  Overlay
+ */
+#Overlay {
+    position: absolute;
+    top: 145px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.5;
+    filter: alpha(opacity = 50);
+    z-index: 200;
+}
+
+/**
+ * @subsection  Dialog
+ */
+.Dialog {
+    position: fixed;
+    z-index: 99999;
+    min-width: 150px;
+    background: #FFF;
+    border-radius: 20px;
+    box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25);
+
+    padding: 0px 0px 24px 0px;
+}
+
+.Dialog > .Header {
+/*    cursor: move;*/
+    display: block;
+    position: relative;
+    padding-top: 24px;
+}
+
+.Dialog > .Header .Close {
+    display: block;
+    position: absolute;
+    height: 12px;
+    width: 12px;
+    right: 32px;
+    top: 34px;
+    margin-top: -6px;
+    color: #00023c;
+    color: var(--colTextDark);
+}
+
+.Dialog > .Header h2 {
+    padding: 0px 32px 16px 32px;
+}
+
+.Dialog > .Header .ooofo {
+    position: relative;
+    top: 1px;
+}
+
+.Dialog > .Content {
+    overflow: hidden;
+    padding: 0px;
+}
+
+.Dialog > .Content > .InnerContent {
+    overflow-y: auto;
+    max-height: 200px;
+}
+
+.Dialog > .Footer {
+    display: none;
+}
+
+/**
+ * subsection       Alert
+ */
+
+.Dialog.Alert .InnerContent .fa {
+    display: block;
+    font-size: 25px;
+    text-align: center;
+    color: #ea2400;
+    margin-bottom: 8px;
+}
+
+.Dialog.Alert p {
+    text-align: center;
+    margin-left: 32px;
+    margin-right: 32px;
+}
+
+.Dialog.Alert {
+    width: 450px;
+    top: 100px;
+    left: 300px;
+    margin-bottom: 8px;
+}
+
+/* Table */
+.Dialog table {
+    min-width: 100%;
+}
+
+.Dialog tbody tr:nth-child(odd) {
+    background-color: #f7f7f9;
+    background-color: var(--colBGLight);
+}
+.Dialog tbody tr:nth-child(even) {
+    background-color: #fdfdfd;
+    background-color: var(--colBGDark);
+}
+
+.Dialog th,
+.Dialog td {
+    padding-left: 16px;
+    height: 32px;
+    max-width: 400px;
+    vertical-align: middle;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.Dialog th:first-child,
+.Dialog td:first-child {
+    padding-left: 40px;
+}
+
+.Dialog th:last-child,
+.Dialog td:last-child {
+    padding-right: 40px;
+}
+
+/* Elasticsearch */
+@media only screen and (max-width: 419px) {
+
+    .Dialog #oooESOuter th:first-child,
+    .Dialog #oooESOuter td:first-child,
+    .Dialog #oooESOuter th:nth-child(2),
+    .Dialog #oooESOuter td:nth-child(2) {
+        display: none;
+    }
+
+    .Dialog #oooESOuter th:nth-child(3),
+    .Dialog #oooESOuter td:nth-child(3) {
+        max-width: calc( 100vw - 80px );
+        padding-left: 40px;
+    }
+
+}
+
+@media only screen and (min-width: 420px) and (max-width: 619px) {
+
+    .Dialog #oooESOuter th:first-child,
+    .Dialog #oooESOuter td:first-child {
+        display: none;
+    }
+
+    .Dialog #oooESOuter th:nth-child(2),
+    .Dialog #oooESOuter td:nth-child(2) {
+        max-width: 84px;
+        padding-left: 40px;
+    }
+
+    .Dialog #oooESOuter th:nth-child(3),
+    .Dialog #oooESOuter td:nth-child(3) {
+        max-width: calc( 100vw - 180px );
+    }
+
+}
+
+@media only screen and (min-width: 620px) and (max-width: 769px) {
+
+    .Dialog #oooESOuter th:first-child,
+    .Dialog #oooESOuter td:first-child {
+        max-width: 184px;
+    }
+
+    .Dialog #oooESOuter th:nth-child(2),
+    .Dialog #oooESOuter td:nth-child(2) {
+        max-width: 84px;
+    }
+
+    .Dialog #oooESOuter th:nth-child(3),
+    .Dialog #oooESOuter td:nth-child(3) {
+        max-width: calc( 100vw - 380px );
+    }
+
+}
+
+} /* end @media */

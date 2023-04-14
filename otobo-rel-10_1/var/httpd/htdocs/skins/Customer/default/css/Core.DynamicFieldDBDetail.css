@@ -1,0 +1,89 @@
+/* OTOBO is a web-based ticketing system for service organisations.
+
+Copyright (C) 2019-2023 Rother OSS GmbH, https://otobo.de/
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+@media screen,projection,tv,handheld {
+
+    #oooMobileHeader,
+    #Footer {
+        display: none;
+    }
+
+    .Content {
+        padding: 0px 24px;
+    }
+
+    fieldset.TableLike {
+        padding: 8px;
+    }
+
+    fieldset.TableLike > div {
+        padding-bottom: 16px;
+    }
+
+    .Field {
+        display: inline-block;
+    }
+
+    .Field > input,
+    .Field > select {
+        height: 24px;
+        border-radius: 10px;
+        padding: 1px 1px 1px 16px;
+        min-width: 140px;
+    }
+
+    .Field > select {
+        border: solid 1px #7f809d;
+        border: solid 1px var(--colTextLight);
+    }
+
+    #Search {
+        margin-top: 24px;
+    }
+
+    /* Results */
+    .ActionList {
+        margin-top: 4px;
+    }
+
+    #ResultTable {
+        width: 100%;
+    }
+
+    #ResultTable > thead,
+    #ResultTable > tbody {
+        border-bottom: solid 1px #7f809d;
+        border-bottom: solid 1px var(--colTextLight);
+    }
+
+    #ResultTable > tbody > tr {
+        cursor: pointer;
+    }
+    
+    #ResultTable > tbody > tr:nth-child(odd) {
+        background-color: #f7f7f9;
+        background-color: var(--colBGLight);
+    }
+
+    #ResultTable > tbody > tr:hover {
+        background-color: #fffccc;
+        background-color: var(--colNotifyWarn);
+    }
+
+    #ResultTable th,
+    #ResultTable td {
+        padding: 1px 4px;
+    }
+
+} /* end @media */

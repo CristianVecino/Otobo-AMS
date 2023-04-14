@@ -1,0 +1,117 @@
+/* OTOBO is a web-based ticketing system for service organisations.
+
+Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
+Copyright (C) 2019-2023 Rother OSS GmbH, https://otobo.de/
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
+*/
+
+/* base layout */
+
+body {
+    position: relative;
+    min-width: 320px;
+}
+
+@media only screen and (max-width: 767px) {
+
+    #oooMobileHeader {
+        width: calc( 100% - 32px );
+        height: 24px;
+        padding: 16px;
+        background-color: #00023c;
+        background-color: var(--colMainDark);
+        position: sticky;
+        top: 0px;
+        z-index: 500;
+    }
+
+    #oooContent {
+        min-height: calc( 100vh - 104px );
+        background-color: #00023c;
+        background-color: var(--colMainDark);
+    }
+
+    #oooMainBox {
+        padding: 8px;
+    }
+
+    #oooCustomerNotifications {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+
+}
+
+@media only screen and (min-width: 768px) {
+
+    #oooMobileHeader {
+        display: none;
+    }
+
+    #oooContent {
+        padding-bottom: 24px;
+        min-height: calc( 100vh - 72px );
+        background-color: #f7f7f9;
+        background-color: var(--colBGLight);
+    }
+
+}
+
+#oooHeader {
+    z-index: 1000;
+}
+#oooNavigation {
+    z-index: 2000;
+}
+
+#oooContent {
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1443px) {
+
+    #oooHeader,
+    #oooFooter > div,
+    #oooCustomerNotifications,
+    #oooMainBox {
+        width: calc( 100% - 160px );
+        padding-left: 102px;
+        padding-right: 58px;
+    }
+
+}
+
+@media only screen and (min-width: 1444px) {
+
+    #oooHeader,
+    #oooFooter > div,
+    #oooCustomerNotifications,
+    #oooMainBox {
+        width: 1284px;
+        padding-left: calc( 50% - 620px );
+        padding-right: calc( 50% - 664px );
+    }
+
+}
+
+#oooCustomerNotifications {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+#oooFooter {
+    height: 48px;
+    background-color: #f7f7f9;
+    background-color: var(--colBGLight);
+}

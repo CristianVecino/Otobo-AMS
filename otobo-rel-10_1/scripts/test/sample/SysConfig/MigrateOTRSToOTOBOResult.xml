@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<otobo_config version="2.0" init="Sample">
+    <Setting Name="Test1" Required="1" Valid="1" ConfigLevel="200">
+        <Description Translatable="1">Convert to checkbox - First No, then Yes - SelectedID is 0.</Description>
+        <Navigation>SubGroup</Navigation>
+        <Value>
+            <Item ValueType="Checkbox">0</Item>
+        </Value>
+    </Setting>
+</otobo_config>
