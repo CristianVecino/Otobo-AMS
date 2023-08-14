@@ -71,41 +71,41 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     #oooLoginBG {
         position: absolute;
         top: 0;
-        right: 0;
-        width: 69vw;
+        right: 0px;
+        width: 62vw;
         height: 100vh;
         min-height: 768px;
-        background-color: #00023c;
+        background-color: #d0d2d3;
         background-color: var(--colMainDark);
     }
 
     #oooLoginBG > .oooBG {
         position: relative;
         width: 100%;
-        height: 100%;
-        opacity: 0.45;
+        height: 48%;
+        opacity: 1;
         background-size: cover;
 		overflow: hidden;
     }
 
 	#oooLoginBG > h1 {
 		position: absolute;
-		bottom: calc( 4% + 24px );
-		left: 38.5vw;
+		bottom: calc( 25% + 24px );
+		left: 31.5vw;
     	transform: translateX(-50%);
 		white-space: nowrap;
-		color: #fff;
+		color: #2c2d8f;
         line-height: 1;
 	}
 
     #oooBGSignet {
-		position: relative;
+		/* position: relative;
 		left: 15.6%;
-		top: -5mm;
-        width: 150%;
-        height: 140%;
+		top: 34mm;
+        width: 100%; */
+        height: 100%;
         background-size: cover;
-		opacity: 0.1;
+		opacity: 1;
     }
 
     #MainBox {
@@ -266,10 +266,10 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 .Row > input:focus,
 .Row > input.oooFull:focus {
-    border: solid 1px #001bff;
+    border: solid 1px #2c2d8f;
     border: solid 1px var(--colMainLight);
     background-color: #fff;
-    color: #001bff;
+    color: #2c2d8f;
     color: var(--colMainLight);
 }
 

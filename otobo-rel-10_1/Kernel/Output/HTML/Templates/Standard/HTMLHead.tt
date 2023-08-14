@@ -51,11 +51,11 @@
 [% RenderBlockStart("HeaderLogoCSS") %]
     <style type="text/css">
         #Header #Logo {
-            background-image: [% Data.URL | html %];
-            top: [% Data.StyleTop | html %];
-            right: [% Data.StyleRight | html %];
-            width: [% Data.StyleWidth | html %];
-            height: [% Data.StyleHeight | html %];
+            #background-image: [% Data.URL | html %];
+            #top: [% Data.StyleTop | html %];
+            #right: [% Data.StyleRight | html %];
+            #width: [% Data.StyleWidth | html %];
+            #height: [% Data.StyleHeight | html %];
         }
     </style>
 [% RenderBlockEnd("HeaderLogoCSS") %]

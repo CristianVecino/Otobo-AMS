@@ -32,7 +32,7 @@ sub Data {
     $Self->{Translation}->{'Message of the day'} = 'Aktuelle Informationen';
     $Self->{Translation}->{'Welcome %s, to your OTOBO.'} = 'Willkommen %s, in Deinem OTOBO.';
     $Self->{Translation}->{'Have fun exploring this preliminary version of the OTOBO customer interface!'} = 'Viel Spaß beim Ansehen dieser im Aufbau befindlichen Kundenansicht von OTOBO!';
-    $Self->{Translation}->{'Your last tickets'} = 'Deine letzten Tickets';
+    $Self->{Translation}->{'Ultimos tickets'} = 'Deine letzten Tickets';
     $Self->{Translation}->{'Your external tools'} = 'Externe Tools';
 
     return;

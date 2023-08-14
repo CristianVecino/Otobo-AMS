@@ -66,7 +66,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         white-space: nowrap;
         overflow-x: scroll;
         border: 0px;
-        background: #00023c;
+        background: #d0d2d3;
         overflow: auto;
         height: 0px;
     }
@@ -210,7 +210,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
     .ResponsiveHandle {
         font-size: 30px;
-        color: #fef235;
+        color: #2c2d8f;
         cursor: pointer;
         display: block;
         position: fixed;
@@ -247,7 +247,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         top: 0px;
         height: 100%;
         position: fixed;
-        background: #00023c;
+        background: #d0d2d3;
         width: 280px;
         overflow: auto;
     }
@@ -674,7 +674,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         width: 280px;
         right: -300px;
         overflow: auto;
-        background: #00023c;
+        background: #d0d2d3;
         padding: 0px 10px;
     }
 

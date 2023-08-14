@@ -56,8 +56,8 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         grid-template-columns: 100%;
         grid-row-gap: 24px;
 
-        height: calc( 308.99vw + 46.56px );
-        grid-template-rows: repeat(5, 1fr);
+		height: calc( 100vw + 46.56px );
+        grid-template-rows: repeat(1, 0fr);
     }
     
 }
@@ -76,7 +76,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
                             
     /* Ticket List */
     #oooTile03 {            
-        grid-area: 6 / 1 / 9 / 2;
+        grid-area: 2 / 1 / 9 / 2;
     }                                           
 
     /* MotD */              
@@ -99,12 +99,12 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         grid-template-columns: 100%;
         grid-column-gap: 24px;
         grid-row-gap: 24px;
-        grid-template-rows: repeat(8, 1fr);
+        grid-template-rows: repeat(2, 0fr);
 
         width: 420px;
         padding-left: calc( 50vw - 210px );
         padding-right: calc( 50vw - 210px );
-        height: 2245.3px;
+        height: 700px;
     }
 
 }
@@ -125,7 +125,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
     /* Ticket List */
     #oooTile03 {            
-        grid-area: 7 / 1 / 10 / 2;
+        grid-area: 3 / 1 / 10 / 2;
     }                       
                             
     /* MotD */              
@@ -148,12 +148,12 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
         grid-template-columns: 100%;
         grid-column-gap: 24px;
         grid-row-gap: 24px;
-        grid-template-rows: repeat(9, 1fr);
+        grid-template-rows: repeat(3, 0fr);
 
         width: 420px;
         padding-left: calc( 50vw - 188px );
         padding-right: calc( 50vw - 232px );
-        height: 2528.96px;
+        height: 800px;
     }
     
 }
@@ -162,16 +162,15 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
     #oooMainBox {
         display: grid;
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         grid-column-gap: 24px;
         grid-row-gap: 24px;
-
-        grid-template-rows: repeat(18, 1fr);
+        grid-template-rows: repeat(3, 0fr);
     }
 
     /* New Ticket */
     #oooTile01 {
-        grid-area: 1 / 4 / 4 / 7;
+        grid-area: 1 / 2 / 2 / 2;
     }
 
     /* Featured Link */
@@ -181,12 +180,12 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
     /* Ticket List */
     #oooTile03 {
-        grid-area: 10 / 1 / 19 / 7;
+        grid-area: 2 / 1 / 2 / 3;
     }
 
     /* MotD */
     #oooTile04 {
-        grid-area: 7 / 1 / 10 / 4;
+        grid-area: 1 / 1 / 1 / 1;
     }
 
     /* External Links*/
@@ -213,7 +212,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
             width: 864px;
             padding-left: calc( 50vw - 410px );
             padding-right: calc( 50vw - 454px );
-            height: 1677.3px;
+            height: 1000px;
         }
     }
 }
@@ -222,17 +221,15 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
     #oooMainBox {
         display: grid;
-
-        grid-template-columns: repeat(12, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         grid-column-gap: 24px;
         grid-row-gap: 24px;
-
-        grid-template-rows: repeat(16, 1fr);
+        grid-template-rows: repeat(3, 0fr);
     }
 
     /* New Ticket */
     #oooTile01 {
-        grid-area: 1 / 9 / 5 / 13;
+        grid-area: 1 / 2 / 2 / 2;
     }
 
     /* Featured Link */
@@ -242,12 +239,12 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
     /* Ticket List */
     #oooTile03 {
-        grid-area: 5 / 5 / 17 / 13;
+        grid-area: 3 / 1 / 2 / 3;
     }
 
     /* MotD */
     #oooTile04 {
-        grid-area: 1 / 5 / 5 / 9;
+        grid-area: 1 / 1 / 1 / 1;
     }
 
     /* External Links*/
@@ -276,12 +273,12 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 @media only screen and (max-width: 767px) {
 
     #oooContent {
-        background-color: #00023c;
+        background-color: #d0d2d3;
         background-color: var(--colMainDark);
     }
 
     #oooHeader {
-        background-color: #00023c;
+        background-color: #d0d2d3;
         background-color: var(--colMainDark);
         color: #ffffff;
         padding: 0px 16px 16px 16px;

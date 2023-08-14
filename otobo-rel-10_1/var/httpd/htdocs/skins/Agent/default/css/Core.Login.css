@@ -38,8 +38,8 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 }
 
 .LoginScreen .SuccessBox {
-    background-color: #c4cdfa;
-    color: #00023c;
+    background-color: #d0d2d3;
+    color: #2c2d8f;
     border-radius: 10px;
 }
 
@@ -145,7 +145,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 #LoginLogo {
     background: transparent url(../img/Otobo_Wortmarke_Digital_Blau_RGB.svg) center no-repeat;
     background-size: contain;
-    height: 220px;
+    height: 100px;
     margin-bottom: 30px;
 }
 

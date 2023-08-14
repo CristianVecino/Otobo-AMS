@@ -984,39 +984,39 @@ form .MessageBox{
     text-indent: -9999px;
     cursor: pointer;
     /* set a default color for priorities */
-    background-color: #cdcdcd;
+    background-color: #fffd6d;
 }
 
 .Flag span.Escalated {
-    background-color:#ea2400;
+    background-color:#ea0000;
 }
 
 .Flag span.New {
-    background-color: #8bef4d;
+    background-color: #01e401;
 }
 
 .Flag span.Warning {
-    background-color: #ffdd50;
+    background-color: #fffd6d;
 }
 
 .Flag span.PriorityID-1 {
-    background-color:#03c4f0;
+    background-color:#0000ec;
 }
 
 .Flag span.PriorityID-2 {
-    background-color:#83bfc8;
+    background-color:#01e401;
 }
 
 .Flag span.PriorityID-3 {
-    background-color:#cdcdcd;
+    background-color:#fffd6d;
 }
 
 .Flag span.PriorityID-4 {
-    background-color:#ffaaaa;
+    background-color:#ff7300;
 }
 
 .Flag span.PriorityID-5 {
-    background-color:#ea2400;
+    background-color:#ea0000;
 }
 
 /**
@@ -1858,6 +1858,6 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
     }
 
     .fa {
-        color: #00023c;
+        color: #ffffff;
     }
 }

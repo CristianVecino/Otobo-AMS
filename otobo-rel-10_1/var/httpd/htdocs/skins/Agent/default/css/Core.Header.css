@@ -26,7 +26,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 #Header {
     height: 72px;
     padding: 10px 0 12px;
-    background: #00023c;
+    background: #d0d2d3;
     color: #FFF;
     position: relative;
 }
@@ -35,10 +35,10 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
  * @subsection  Logo
  */
 #Logo {
-    top: 25px;
-    right: 24px;
-    width: 300px;
-    height: 55px;
+    top: 16px;
+    right: 50px;
+    width: 230px;
+    height: 64px;
     background: url(../img/logo_bg.png) no-repeat;
     background-size: contain;
     position: absolute;
@@ -84,7 +84,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
     width: 0px;
     height: 20px;
     margin: 3px 20px 0 20px;
-    border-right: 1px solid #fff;
+    border-right: 1px solid #000000;
     opacity: 0.35;
     float: left;
     position: relative;
@@ -144,10 +144,10 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar > a.Active {
 }
 
 @keyframes border-fill {
-    0%   { border-bottom: 2px solid #fef235; }
-    25%  { border-bottom: 2px solid #fef235; border-left: 2px solid #fef235; }
-    50%  { border-bottom: 2px solid #fef235; border-left: 2px solid #fef235; border-top: 2px solid #fef235; }
-    100% { border-bottom: 2px solid #fef235; border-left: 2px solid #fef235; border-top: 2px solid #fef235; border-right: 2px solid #fef235; }
+    0%   { border-bottom: 2px solid #a2007c; }
+    25%  { border-bottom: 2px solid #a2007c; border-left: 2px solid #fef235; }
+    50%  { border-bottom: 2px solid #a2007c; border-left: 2px solid #fef235; border-top: 2px solid #fef235; }
+    100% { border-bottom: 2px solid #a2007c; border-left: 2px solid #fef235; border-top: 2px solid #fef235; border-right: 2px solid #fef235; }
 }
 
 #ToolBar form[name="SearchFulltext"],
@@ -173,7 +173,7 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar > a.Active {
     top: 100%;
     left: -10px;
     margin-top: 22px;
-    background-color: #00023c;
+    background-color: #d0d2d3;
 }
 
 #ToolBar li.UserAvatar div:after {
@@ -186,7 +186,7 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar > a.Active {
 	position: absolute;
 	pointer-events: none;
 	border-color: rgba(85, 85, 85, 0);
-	border-bottom-color: #00023c;
+	border-bottom-color: #d0d2d3;
 	border-width: 15px;
 }
 
@@ -196,16 +196,16 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar > a.Active {
     height: auto;
     width: auto;
     line-height: 18px;
-    color: #fff;
+    color: #000000;
     display: block;
     padding: 5px 10px;
     white-space: nowrap;
-    background-color: #00023c;
+    background-color: #d0d2d3;
 }
 
 body.Visible-ScreenXL #ToolBar li.UserAvatar div a:hover {
-    background: #00023c;
-    color: #fef235;
+    background: #d0d2d3;
+    color: #a2007c;
 }
 
 #ToolBar li.UserAvatar div a:last-child {
@@ -213,13 +213,13 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar div a:hover {
 }
 
 #ToolBar li.UserAvatar div span {
-    color: white;
+    color: black;
     font-size: 12px;
-    border-bottom: 1px solid #fef235;
+    border-bottom: 1px solid #d0d2d3;
     padding-bottom: 5px;
     margin-bottom: 5px;
     padding-top: 10px;
-    background-color: #00023c;
+    background-color: #d0d2d3;
 }
 
 #ToolBar li.UserAvatar div strong {
@@ -246,7 +246,7 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar div a:hover {
     width: 24px;
     position: relative;
     top: -9px;
-    color: #fef235 !important;
+    color: #2c2d8f !important;
 }
 
 #ToolBar a i.icon-small {
@@ -269,7 +269,7 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar div a:hover {
 
 #ToolBar a span.Counter {
     bottom: -14px;
-    color: #FFFFFF;
+    color: #000000;
     display: block;
     font-size: 11px;
     left: 50%;
@@ -290,8 +290,8 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar div a:hover {
 
 #ToolBar .Extended input[type=text] {
     padding: 4px 15px 4px 29px;
-    background: #00023c;
-    border: 1px solid #fef899;
+    background: #2c2d8f;
+    border: 1px solid #2c2d8f;
     box-shadow: none;
     position: relative;
 /*    top: -1px;
@@ -304,7 +304,7 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar div a:hover {
 }
 
 #ToolBar .Extended input[type=text]:focus {
-    background: #fef899;
+    background: #2c2d8f;
 }
 
 #ToolBar .Extended input[type=text]:not(.InputField_Search) {
@@ -323,7 +323,7 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar div a:hover {
     position: absolute;
     left: 20px;
     z-index: 2;
-    color: #fef899;
+    color: #a2007c;
     top: 6px;
 }
 
@@ -406,8 +406,8 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar div a:hover {
 }
 
 #NavigationContainer > a {
-    background: #f3960d;
-    color: #FFFFFF;
+    background: #2c2d8f;
+    color: #000000;
     font-weight: bold;
     font-size: 13px;
     height: 34px;
@@ -460,7 +460,7 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar div a:hover {
     padding: 8px 10px 4px 10px;
     font-size: 12px;
     line-height: 12px;
-    color: #fffeea;
+    color: #000000;
     position: relative;
 }
 
@@ -470,7 +470,7 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar div a:hover {
     position: absolute;
     bottom: 0px;
     left: 0px;
-    background: #fef235;
+    background: #2c2d8f;
     content: "";
     transform: scale(0, 1);
     transform-origin: 0;
@@ -506,7 +506,7 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar div a:hover {
 
 #Navigation > li:hover > a,
 #Navigation > li:active > a {
-    color: #fef235;
+    color: #2c2d8f;
 }
 
 
@@ -524,7 +524,7 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar div a:hover {
 }
 
 #Navigation > .Selected > a {
-    color: #FFF;
+    color: #000000;
 }
 
 /**
@@ -539,11 +539,11 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar div a:hover {
     left: 15px;
     font-size: 20px;
     position: absolute;
-    color: #fef235;
+    color: #2c2d8f;
 }
 
 #Navigation a i.fa.fa-search {
-    color: white !important;
+    color: black !important;
 }
 
 /**
@@ -578,7 +578,7 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar div a:hover {
 }
 
 #Navigation > .Active > ul > li:hover {
-    background: #fef235;
+    background: #2c2d8f;
 }
 
 #Navigation > .Active > ul > li:hover > a {
@@ -588,19 +588,19 @@ body.Visible-ScreenXL #ToolBar li.UserAvatar div a:hover {
 #Navigation > .Active > ul > li > a {
     display: block;
     position: relative;
-    color: #fffeea;
+    color: #000;
     padding: 8px 10px;
-    border-bottom: 1px solid #000033;
-    background-color: #000033;
+    border-bottom: 1px solid #d0d2d3;
+    background-color: #d0d2d3;
 }
 
 #Navigation > .Active > ul > li > a:hover {
     display: block;
     position: relative;
-    color: #fef235;
+    color: #268ede;
     padding: 8px 10px;
-    border-bottom: 1px solid #000033;
-    background-color: #000033;
+    border-bottom: 1px solid #d0d2d3;
+    background-color: #d0d2d3;
 }
 
 #Navigation > .Active > ul > li:last-child > a {

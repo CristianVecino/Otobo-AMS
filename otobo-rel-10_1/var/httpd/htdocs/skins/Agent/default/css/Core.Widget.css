@@ -645,8 +645,8 @@ ul.WidgetTooltip li a:hover i {
     vertical-align: middle;
     color: white;
     font-size: 11px;
-    border: 1px solid #000099;
-    background-color: #000099;
+    border: 1px solid #2c2d8f;
+    background-color: #2c2d8f;
     border-bottom: none;
     cursor: pointer;
 /*    display: block; */
@@ -690,7 +690,7 @@ ul.WidgetTooltip li a:hover i {
 }
 
 .cke_dialog_footer_buttons a.cke_dialog_ui_button:hover {
-    background-color: #0000fc;
+    background-color: #268ede;
 }
 
 .CallForAction.Hidden {
@@ -734,7 +734,7 @@ ul.WidgetTooltip li a:hover i {
 
 .CallForAction:hover,
 .CallForAction:focus {
-    color: #00023c;
+    color: #268ede;
     border-color: #aaa;
 }
 
@@ -819,8 +819,8 @@ ul.WidgetTooltip li a:hover i {
 .CallForAction:active,
 .CallForAction:hover,
 .CallForAction:focus {
-    background-color: #0000fc;
-    border-color: #0000fc;
+    background-color: #268ede;
+    border-color: #268ede;
     color: white;
 }
 

@@ -50,7 +50,7 @@
         <Description Translatable="1">Defines the name of the application, shown in the web interface, tabs and title bar of the web browser.</Description>
         <Navigation>Core</Navigation>
         <Value>
-            <Item ValueType="String" ValueRegex="">OTOBO 10</Item>
+            <Item ValueType="String" ValueRegex="">Grupo AMS</Item>
         </Value>
     </Setting>
     <Setting Name="SystemID" Required="1" Valid="1" ConfigLevel="200">
@@ -116,7 +116,7 @@
         <Description Translatable="1">Company name which will be included in outgoing emails as an X-Header.</Description>
         <Navigation>Core</Navigation>
         <Value>
-            <Item ValueType="String" ValueRegex="">Example Company</Item>
+            <Item ValueType="String" ValueRegex="">Grupo AMS</Item>
         </Value>
     </Setting>
     <Setting Name="DefaultLanguage" Required="1" Valid="1">
@@ -263,7 +263,7 @@
         <Description Translatable="1">The headline shown in the customer interface.</Description>
         <Navigation>Frontend::Customer</Navigation>
         <Value>
-            <Item ValueType="String" ValueRegex="">Example Company</Item>
+            <Item ValueType="String" ValueRegex="">Grupo AMS</Item>
         </Value>
     </Setting>
     <Setting Name="CustomerLogo" Required="0" Valid="0">
@@ -281,18 +281,18 @@
         <Navigation>Frontend::Customer</Navigation>
         <Value>
             <Hash>
-                <Item Key="MainDark">#00023c</Item>
-                <Item Key="MainLight">#001bff</Item>
+                <Item Key="MainDark">#d0d2d3</Item>
+                <Item Key="MainLight">#2c2d8f</Item>
                 <Item Key="BGLight">#f7f7f9</Item>
                 <Item Key="BGDark">#bfbfce</Item>
-                <Item Key="TextDark">#00023c</Item>
+                <Item Key="TextDark">#2c2d8f</Item>
                 <Item Key="TextLight">#7f809d</Item>
-                <Item Key="Highlight">#fef235</Item>
+                <Item Key="Highlight">#a2007c</Item>
                 <Item Key="NotifyOK">#c4cdfa</Item>
                 <Item Key="NotifyWarn">#fffccc</Item>
                 <Item Key="NotifyErr">#f9bcb2</Item>
                 <Item Key="HoverLight">#6d83f2</Item>
-                <Item Key="HoverDark">#000099</Item>
+                <Item Key="HoverDark">#268ede</Item>
                 <Item Key="ShadowMain">rgba(0,27,255,0.24)</Item>
                 <Item Key="ShadowDark">rgba(4,0,71,0.16)</Item>
             </Hash>
@@ -3028,7 +3028,7 @@
         <Description Translatable="1">Specifies the name that should be used by the application when sending notifications. The sender name is used to build the complete display name for the notification master (i.e. "OTOBO Notifications" otobo@your.example.com).</Description>
         <Navigation>Core::Email</Navigation>
         <Value>
-            <Item ValueType="String" ValueRegex="">OTOBO Notifications</Item>
+            <Item ValueType="String" ValueRegex="">Grupo AMS Notificaciones</Item>
         </Value>
     </Setting>
     <Setting Name="NotificationSenderEmail" Required="1" Valid="1">
@@ -7132,7 +7132,7 @@ via the Preferences button after logging in.
         <Navigation>Frontend::Customer::View::Login</Navigation>
         <Value>
             <Hash>
-                <Item Key="LoginText">Your Tickets. Your OTOBO.</Item>
+                <Item Key="LoginText">Bienvenido a tu Mesa de Servicios.</Item>
                 <Item Key="Background">/otobo-web/common/img/LoginBG.jpg</Item>
             </Hash>
         </Value>
@@ -7243,9 +7243,9 @@ via the Preferences button after logging in.
         <Navigation>Frontend::Customer::View::Dashboard::Configuration</Navigation>
         <Value>
             <Hash>
-                <Item Key="WelcomeText">Welcome %s, to your OTOBO.</Item>
+                <Item Key="WelcomeText">Bienvenido %s, a tu mesa de servicios.</Item>
                 <Item Key="Name">UserFirstname</Item>
-                <Item Key="SubText">This service portal is available to you all day every day.</Item>
+                <Item Key="SubText">Este portal de servicios está disponible para usted todo el dia, todos los dias.</Item>
             </Hash>
         </Value>
     </Setting>
@@ -7258,13 +7258,13 @@ via the Preferences button after logging in.
                 <Item Key="Template">Dashboard/TileNewTicket</Item>
                 <Item Key="Config">
                     <Hash>
-                        <Item Key="Color">#001bff</Item>
+                        <Item Key="Color">#2c2d8f</Item>
                     </Hash>
                 </Item>
             </Hash>
         </Value>
     </Setting>
-    <Setting Name="CustomerDashboard::Tiles###FeaturedLink-01" Required="0" Valid="1">
+    <!-- <Setting Name="CustomerDashboard::Tiles###FeaturedLink-01" Required="0" Valid="1">
         <Description Translatable="1">Tile registration for the CustomerDashboard. Module is required.</Description>
         <Navigation>Frontend::Customer::View::Dashboard::Tiles</Navigation>
         <Value>
@@ -7284,7 +7284,7 @@ via the Preferences button after logging in.
                 </Item>
             </Hash>
         </Value>
-    </Setting>
+    </Setting> -->
     <Setting Name="CustomerDashboard::Tiles###TicketList-01" Required="0" Valid="1">
         <Description Translatable="1">Tile registration for the CustomerDashboard. Module is required.</Description>
         <Navigation>Frontend::Customer::View::Dashboard::Tiles</Navigation>
@@ -7294,7 +7294,7 @@ via the Preferences button after logging in.
                 <Item Key="Module">Kernel::Output::HTML::CustomerDashboard::TileTicketList</Item>
                 <Item Key="Config">
                     <Hash>
-                        <Item Key="Text">Your last tickets</Item>
+                        <Item Key="Text">Ultimos Tickets</Item>
                         <Item Key="SortBy">Age</Item>
                         <Item Key="OrderBy">Down</Item>
                         <Item Key="StateType"></Item>
@@ -7314,16 +7314,16 @@ via the Preferences button after logging in.
                 <Item Key="Template">Dashboard/TilePlainText</Item>
                 <Item Key="Config">
                     <Hash>
-                        <Item Key="HeaderText">Message of the day</Item>
-                        <Item Key="MainText" ValueType="Textarea">Hello World! :)</Item>
-                        <Item Key="TextColor">#00023c</Item>
+                        <Item Key="HeaderText">Bienvenidos</Item>
+                        <Item Key="MainText" ValueType="Textarea">Mesa de servicios Grupo AMS</Item>
+                        <Item Key="TextColor">#2c2d8f</Item>
                         <Item Key="BackgroundColor">#fff</Item>
                     </Hash>
                 </Item>
             </Hash>
         </Value>
     </Setting>
-    <Setting Name="CustomerDashboard::Tiles###ToolBox-01" Required="0" Valid="1">
+    <!-- <Setting Name="CustomerDashboard::Tiles###ToolBox-01" Required="0" Valid="1">
         <Description Translatable="1">Tile registration for the CustomerDashboard. Module is required.</Description>
         <Navigation>Frontend::Customer::View::Dashboard::Tiles</Navigation>
         <Value>
@@ -7371,7 +7371,7 @@ via the Preferences button after logging in.
                 </Item>
             </Hash>
         </Value>
-    </Setting>
+    </Setting> -->
     <Setting Name="CustomerFrontend::Module###Logout" Required="0" Valid="1">
         <Description Translatable="1">Frontend module registration for the customer interface.</Description>
         <Navigation>Frontend::Customer::ModuleRegistration</Navigation>

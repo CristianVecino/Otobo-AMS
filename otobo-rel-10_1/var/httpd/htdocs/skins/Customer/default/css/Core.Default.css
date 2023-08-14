@@ -21,7 +21,7 @@ body {
     font-style: normal;
     line-height: 1.5;
     letter-spacing: 0.35px;
-    color: #00023c;
+    color: #2c2d8f;
     color: var(--colTextDark);
 }
 
@@ -96,7 +96,7 @@ h3 {
 }
 
 button {
-    background-color: #001bff;
+    background-color: #2c2d8f;
     background-color: var(--colMainLight);
     text-align: center;
     color: #ffffff;
@@ -111,7 +111,7 @@ button {
 
 button:hover,
 button:focus {
-    background-color: #000099;
+    background-color: #268ede;
     background-color: var(--colHoverDark);
 }
 
@@ -179,7 +179,7 @@ ul.ui-autocomplete {
     font-style: normal;
     line-height: 1.5;
     letter-spacing: 0.35px;
-    color: #00023c;
+    color: #2c2d8f;
     color: var(--colTextDark);
 }
 

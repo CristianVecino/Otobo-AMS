@@ -45,7 +45,7 @@
     <style type="text/css">
         #LoginLogo {
             background-image: [% Data.URL | html %];
-            height: [% Data.StyleHeight | html %];
+            #height: [% Data.StyleHeight | html %];
         }
     </style>
 [% RenderBlockEnd("LoginLogoCSS") %]

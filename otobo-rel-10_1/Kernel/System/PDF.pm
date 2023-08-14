@@ -370,7 +370,7 @@ sub PageNew {
     # output the logo image at header left
     $Self->Image(
         File   => $LogoFile,
-        Width  => 700,
+        Width  => 346,
         Height => 100,
     );
 

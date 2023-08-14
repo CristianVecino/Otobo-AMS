@@ -47,8 +47,8 @@
 # customer has no tickets at all
 [% RenderBlockStart("EmptyDefault") %]
     <a href="[% Env("Baselink") %]Action=CustomerTicketMessage" class="oooTicketListMessage">
-        <h3>[% Translate("Welcome!") | html %]</h3>
-        <p>[% Translate("You have no tickets yet. Please click here, to create a new one.") | html %]</p>
+        <h3>[% Translate("Bienvenido!") | html %]</h3>
+        <p>[% Translate("Aun no tienes tickets. Haga clic aquí para crear uno nuevo.") | html %]</p>
     </a>
 [% RenderBlockEnd("EmptyDefault") %]
 [% RenderBlockStart("EmptyCustom") %]

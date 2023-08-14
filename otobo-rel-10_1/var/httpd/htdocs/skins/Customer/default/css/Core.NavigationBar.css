@@ -327,8 +327,8 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 	left: calc(100% - 39px);
 	width: 22px;
 	height: 22px;
-    fill: #fff;
-    opacity: 0.4;
+    fill: #000000;
+    opacity: 0.5;
 -webkit-transition: opacity 0.12s ease, fill 0.12s ease;
    -moz-transition: opacity 0.12s ease, fill 0.12s ease;
      -o-transition: opacity 0.12s ease, fill 0.12s ease;
@@ -403,8 +403,8 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 #oooUser h3,
 #oooPrefDesc > p {
     display: none;
-    color: #fff;
-    opacity: 0.4;
+    color: #000000;
+    opacity: 0.5;
     white-space: nowrap;
 -webkit-transition: opacity 0.12s ease, color 0.12s ease;
    -moz-transition: opacity 0.12s ease, color 0.12s ease;
@@ -417,13 +417,13 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 #oooUser a:hover > p,
 #oooUser > .oooLogout .Highlight {
 	opacity: 1;
-    color: #fef235;
+    color: #a2007c;
     color: var(--colHighlight);
 }
 
 #oooNavBarModuleIcons > a:hover > .oooIconContainer > svg {
 	opacity: 1;
-    fill: #fef235;
+    fill: #a2007c;
     fill: var(--colHighlight);
 }
 
